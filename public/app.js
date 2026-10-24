@@ -249,15 +249,15 @@ const views = {
     $('#lv').onclick = () => { call.leave(); location.hash = '#/'; };
     $('#inv').onclick = () => { navigator.clipboard?.writeText(location.href); toast('Invite link copied (contains the room key)'); };
     const send = () => { if ($('#ci').value.trim()) { call.sendChat($('#ci').value.trim()); $('#ci').value = ''; } };
-    $('#cs').onclick = send; $('#ci').onkeydown = (e) => e.key === 'Enter' && send();
+    $('#cs').onclick = send; $('#ci').onkeydown = (e) => { if (e.key === 'Enter') send(); };
     $('#fi').onchange = () => { const f = $('#fi').files[0]; if (f) call.sendFile(f); $('#fi').value = ''; };
   },
   login() {
-    $('#view').innerHTML = `<div class="card auth"><div style="text-align:center;font-size:48px">🎥</div><h2 id="t" style="text-align:center">Log in to MeetUp</h2><label>Username</label><input id="u"><label>Password</label><input id="p" type="password"><p class="err" id="err"></p><button class="btn" id="go" style="width:100%">Log in</button><p class="muted" style="text-align:center">New here? <a href="#" id="sw">Create an account</a></p></div>`;
+    $('#view').innerHTML = `<div class="card auth"><div style="text-align:center;font-size:48px">🎥</div><h2 id="t" style="text-align:center">Log in to MeetUp</h2><label>Username</label><input id="u"><label>Password</label><input id="p" type="password"><p class="err" id="err"></p><button class="btn" id="go" style="width:100%">Log in</button><p class="muted" style="text-align:center"><span id="swl">New here?</span> <a href="#" id="sw">Create an account</a></p></div>`;
     let mode = 'login';
-    $('#sw').onclick = (e) => { e.preventDefault(); mode = mode === 'login' ? 'register' : 'login'; $('#t').textContent = mode === 'login' ? 'Log in to MeetUp' : 'Create your account'; $('#go').textContent = mode === 'login' ? 'Log in' : 'Sign up'; $('#sw').textContent = mode === 'login' ? 'Create an account' : 'Log in'; };
+    $('#sw').onclick = (e) => { e.preventDefault(); mode = mode === 'login' ? 'register' : 'login'; $('#t').textContent = mode === 'login' ? 'Log in to MeetUp' : 'Create your account'; $('#go').textContent = mode === 'login' ? 'Log in' : 'Sign up'; $('#sw').textContent = mode === 'login' ? 'Create an account' : 'Log in'; $('#swl').textContent = mode === 'login' ? 'New here?' : 'Already have an account?'; };
     const go = async () => { try { const s = await api('/' + mode, { method: 'POST', body: { username: $('#u').value, password: $('#p').value } }); localStorage.setItem('meet_session', JSON.stringify(s)); route(); } catch (e) { $('#err').textContent = e.message; } };
-    $('#go').onclick = go; $('#p').onkeydown = (e) => e.key === 'Enter' && go();
+    $('#go').onclick = go; $('#p').onkeydown = (e) => { if (e.key === 'Enter') go(); };
   },
 };
 function route() {
