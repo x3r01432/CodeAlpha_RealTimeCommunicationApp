@@ -1,0 +1,55 @@
+*{box-sizing:border-box}
+:root{--bg:#f5f7fb;--card:#fff;--ink:#1d2433;--muted:#6b7385;--accent:#7c3aed;--accent2:#f3e8ff;--line:#e3e7ef;--ok:#16a34a;--bad:#dc2626}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+a{color:var(--accent);text-decoration:none}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:12px 24px;display:flex;align-items:center;gap:18px;position:sticky;top:0;z-index:5}
+header .brand{font-weight:800;font-size:20px;color:var(--ink)}
+header nav{white-space:nowrap;display:flex;gap:14px;margin-left:auto;align-items:center}
+main{max-width:1100px;margin:24px auto;padding:0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 16px;font-weight:600;cursor:pointer;font-size:14px}
+.btn.ghost{background:var(--accent2);color:var(--accent)}
+.btn.danger{background:#fee2e2;color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:default}
+input,textarea,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff}
+textarea{resize:vertical}
+label{font-size:13px;color:var(--muted);display:block;margin:10px 0 4px}
+.muted{color:var(--muted)}
+.row{display:flex;gap:12px;align-items:center}
+.between{justify-content:space-between}
+.badge{display:inline-block;background:var(--accent2);color:var(--accent);border-radius:99px;padding:2px 10px;font-size:12px;font-weight:600}
+.err{color:var(--bad);font-size:14px;min-height:20px}
+.auth{max-width:380px;margin:60px auto}
+h1,h2,h3{margin:.2em 0 .5em}
+.toast{position:fixed;right:20px;bottom:20px;background:#111827;color:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 8px 30px #0003;z-index:50}
+body.inroom{background:#111827;color:#e5e7eb}
+body.inroom header{background:#0b1220;border-color:#1f2937}body.inroom header .brand{color:#fff}
+.room{display:grid;grid-template-columns:1fr 360px;gap:14px;height:calc(100vh - 64px);padding:14px}
+.stage{display:flex;flex-direction:column;min-height:0}
+.videos{flex:1;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-content:center;min-height:0}
+.tile{position:relative;background:#000;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
+.tile video{width:100%;height:100%;object-fit:cover;background:#000}
+.tile.screen video{object-fit:contain}
+.tile .name{position:absolute;left:10px;bottom:10px;background:#000a;color:#fff;padding:3px 10px;border-radius:8px;font-size:13px}
+.tile .flags{position:absolute;right:10px;top:10px;font-size:14px}
+.controls{display:flex;justify-content:center;gap:12px;padding:14px}
+.ctl{width:52px;height:52px;border-radius:50%;border:0;font-size:22px;cursor:pointer;background:#374151;color:#fff}
+.ctl.off{background:#dc2626}.ctl.on{background:var(--accent)}.ctl.leave{background:#dc2626;width:auto;border-radius:26px;padding:0 20px;font-size:15px;font-weight:700}
+.panel{background:#1f2937;border-radius:14px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.tabs{display:flex}.tabs button{flex:1;background:none;border:0;color:#9ca3af;padding:12px;font-weight:700;cursor:pointer;border-bottom:2px solid transparent}
+.tabs button.act{color:#fff;border-color:var(--accent)}
+.pane{flex:1;display:flex;flex-direction:column;min-height:0;padding:10px}
+.msgs{flex:1;overflow:auto;font-size:14px}.msg{margin:6px 0;background:#111827;padding:8px 10px;border-radius:10px}.msg b{color:#c4b5fd}
+.pane input{background:#111827;color:#fff;border-color:#374151}
+.lock{font-size:12px;color:#34d399;margin-bottom:6px}
+.file{display:flex;justify-content:space-between;align-items:center;background:#111827;border-radius:10px;padding:8px 10px;margin:6px 0;font-size:14px}
+progress{width:100%}
+.wbwrap{flex:1;background:#fff;border-radius:10px;overflow:hidden;min-height:0;position:relative}
+#wb{width:100%;height:100%;touch-action:none;cursor:crosshair;display:block}
+.wbtools{display:flex;gap:6px;align-items:center;margin-bottom:8px}.wbtools span{width:22px;height:22px;border-radius:50%;cursor:pointer;border:2px solid #0000}.wbtools span.sel{border-color:#fff}
+body.wbbig .room{grid-template-columns:1fr 60%}
+[hidden]{display:none!important}
+body.wbbig .videos{grid-template-columns:1fr 1fr;align-content:start}
+.videos{overflow-y:auto;grid-auto-rows:min-content}
+.stage .controls,.stage>div:last-child{flex-shrink:0}
